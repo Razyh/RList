@@ -7,6 +7,43 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="button" Content="Search" Click="button_Click" Grid.Column="2"/>
+        <Button x:Name="button1" Content="Button" Click="button1_Click" Grid.Row="2" Grid.Column="2"/>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,10,0">
+            <ListView x:Name="RList">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Path=names.eng}"></TextBlock>
+                            <TextBlock Padding="5,0" Text="/"></TextBlock>
+                            <TextBlock Text="{Binding Path=names.rus}"></TextBlock>
+                            <TextBlock Text=" ("></TextBlock>
+                            <TextBlock Text="{Binding Path=RededChapters}"></TextBlock>
+                            <TextBlock Text="/"></TextBlock>
+                            <TextBlock Text="{Binding Path=chapters}"></TextBlock>
+                            <TextBlock Text=")"></TextBlock>
+                            <TextBlock Text=" +" Cursor="Hand" MouseLeftButtonUp="TextBlock_MouseLeftButtonUp"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit" Click="R_edit"/>
+                        <MenuItem Header="Delete" Click="R_delete"/>
+                        <MenuItem Header="Update" Click="R_update"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
+        </Grid>
     </Grid>
 </Window>
