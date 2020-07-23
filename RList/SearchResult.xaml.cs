@@ -20,6 +20,7 @@ namespace RList
     public partial class SearchResult : Window
     {
         public RMain RMain;
+        public MainWindow mainWindow;
         public SearchResult()
         {
             InitializeComponent();
@@ -47,6 +48,7 @@ namespace RList
                 RMain.GetRanobe(item.id, item.names);
             }
             RMain.Save();
+            mainWindow.RList.Items.Refresh();
         }
     }
 }

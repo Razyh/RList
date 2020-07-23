@@ -39,6 +39,7 @@ namespace RList
             SearchResult searchResult = new SearchResult();
             searchResult.Owner = this;
             searchResult.RMain = RMain;
+            searchResult.mainWindow = this;
             searchResult.Show();
         }
 
@@ -48,14 +49,20 @@ namespace RList
         }
         private void R_delete(object sender, RoutedEventArgs e)
         {
-            foreach (RMain.Ranobe item in RList.SelectedItems)
+            var selected = RList.SelectedItems;
+            foreach (RMain.Ranobe item in selected)
             {
                 RMain.Remove(item);
+            }
+            if (selected.Count != 0)
+            {
+                RList.Items.Refresh();
             }
         }
         private void R_update(object sender, RoutedEventArgs e)
         {
             RMain.Update();
+            RList.Items.Refresh();
         }
 
         private void TextBlock_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
